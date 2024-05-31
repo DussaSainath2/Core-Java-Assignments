@@ -1,0 +1,31 @@
+//Write a Java program to count both vowels and consonants in a given string
+package demo;
+import java.util.Arrays;
+import java.util.*;
+import java.util.Scanner;
+public class Vowconsts{
+	public static void main(String[] args) {
+		String s;
+		Scanner sc=new Scanner(System.in);
+		s=sc.nextLine();
+		String vowelschars= "AEIOUaeiou";
+		String arr1[]=new String[s.length()];
+		List<String> vowels=new ArrayList<>();
+		List<String> Consonents=new ArrayList<>();
+		for(int i=0;i<s.length();i++) {
+			arr1[i]=String.valueOf(s.charAt(i));
+			if(vowelschars.contains(arr1[i])) {
+				vowels.add(arr1[i]);
+			}
+			else {
+				Consonents.add(arr1[i]);
+			}
+	}
+	System.out.println("Vowels are " + vowels.size());
+	System.out.println("Consonants are " + Consonents.size());
+	
+	}
+}
+
+	}
+}
