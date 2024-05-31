@@ -1,0 +1,21 @@
+// Write a Java program to reverse a given string
+
+package demo;
+import java.util.*;
+import java.util.Scanner;
+public class Stringreverse {
+    public static void main(String[] args) {
+      String s;
+      String r="";
+      Scanner sc=new Scanner(System.in);
+      s=sc.nextLine();
+      int k=s.length()-1;
+      while(k>=0){
+        r+=s.charAt(k);
+        k--;
+      }
+      r=r.toLowerCase(null);
+      System.out.println(r);
+      }
+  }
+
