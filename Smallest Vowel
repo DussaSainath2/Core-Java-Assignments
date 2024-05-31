@@ -1,0 +1,32 @@
+// Smallest Vowel
+
+package demo;         
+import java.util.*;
+import java.util.Scanner;
+public class SmallVowel{
+    public static void main(String[] args) {
+      String s;
+      Scanner sc=new Scanner(System.in);
+      s=sc.nextLine();
+      for(int i=0;i<s.length();i++){
+        switch(s.charAt(i)){
+          case 'a':
+            System.out.println("a");
+            break;
+          case 'e':
+            System.out.println("e");
+            break;
+          case 'i':
+            System.out.println("i");
+            break;
+          case 'o':
+            System.out.println("o");
+            break;
+          case 'u':
+            System.out.println("u");
+            break;
+        }
+      }
+      sc.close();
+      }
+  }
