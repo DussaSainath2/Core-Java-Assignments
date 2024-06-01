@@ -1,0 +1,38 @@
+package Demo1;
+import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Collections;
+public class Pspk{
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      System.out.println("enter the no of prime number:");
+      int n=sc.nextInt();
+      int []arr1=new int[n];
+      System.out.println("enter the 2 digits prime number:");
+      for(int i=0;i<n;i++){
+        arr1[i]=sc.nextInt();
+      }
+      ArrayList<Integer> arr=new ArrayList<>();
+      for(int i=0;i<arr1.length;i++){
+        int c=0;
+        for(int j=2;j<arr1[i];j++){
+          if(arr1[i]%j==0){
+            c+=1;
+          }
+        }
+        if (c==0){
+          arr.add(arr1[i]);
+        }
+      }
+      for(int a:arr){
+        System.out.println(a);
+      }
+      int l=arr.size();
+      arr.remove(Collections.max(arr));
+      int max2=Collections.max(arr);
+      System.out.println("size of aray + second maximum prime element from array list is " +l+max2);
+      
+      
+    }
+}
