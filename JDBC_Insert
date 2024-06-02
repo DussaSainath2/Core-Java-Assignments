@@ -1,0 +1,32 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Jaavaa {
+	
+	static final String url= "jdbc:mysql://localhost:3306/techm?useSSL=false"; 
+  
+    public static void main(String[] args) throws ClassNotFoundException { 
+        try { 
+            Class.forName("com.mysql.cj.jdbc.Driver"); 
+            Connection conn = DriverManager.getConnection(url, "root", "21238"); 
+            Statement stmt = conn.createStatement(); 
+            int result = stmt.executeUpdate( 
+                "insert into students(id,name,gender) values(15,'Deepak','M')"); 
+            if (result > 0) 
+                System.out.println("successfully inserted"); 
+  
+            else
+                System.out.println("unsucessful insertion "); 
+  
+            // closing connection 
+            conn.close(); 
+        } 
+  
+        catch (SQLException e) { 
+            System.out.println(e); 
+        } 
+}
+}
