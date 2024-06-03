@@ -1,0 +1,15 @@
+import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.stream.Collectors;
+public class Main {
+    public static void main(String[] args) {
+      ArrayList<String> arr=new ArrayList<>();
+      arr.add("sai");
+      arr.add("ece");
+      arr.add("cse");
+      arr.add("mech");
+      List<String> r=arr.stream().map(String::toUpperCase).collect(Collectors.toList());    
+      System.out.println(r);
+  }
+}
