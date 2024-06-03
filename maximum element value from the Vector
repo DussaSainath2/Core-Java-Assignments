@@ -1,0 +1,13 @@
+//Java program to get the maximum element value from the Vector
+import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+public class Main {
+    public static void main(String[] args) {
+      Vector<Integer> vector=new Vector<>();
+      vector.add(10);
+      vector.add(520);
+      vector.add(30);
+      System.out.println("Highest element is"+ Collections.max(vector));
+  }
+}
