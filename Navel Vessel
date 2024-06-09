@@ -1,0 +1,132 @@
+import java.util.Scanner;
+
+class NavalVessel {
+    private int vesselId;
+    private String vesselName;
+    private int noOfVoyagesPlanned;
+    private int noOfVoyagesCompleted;
+    private String purpose;
+    private String classification;
+
+    public NavalVessel(int vesselId, String vesselName, int noOfVoyagesPlanned, int noOfVoyagesCompleted, String purpose) {
+        this.vesselId = vesselId;
+        this.vesselName = vesselName;
+        this.noOfVoyagesPlanned = noOfVoyagesPlanned;
+        this.noOfVoyagesCompleted = noOfVoyagesCompleted;
+        this.purpose = purpose;
+    }
+
+    public int getVesselId() {
+        return vesselId;
+    }
+
+    public void setVesselId(int vesselId) {
+        this.vesselId = vesselId;
+    }
+
+    public String getVesselName() {
+        return vesselName;
+    }
+
+    public void setVesselName(String vesselName) {
+        this.vesselName = vesselName;
+    }
+
+    public int getNoOfVoyagesPlanned() {
+        return noOfVoyagesPlanned;
+    }
+
+    public void setNoOfVoyagesPlanned(int noOfVoyagesPlanned) {
+        this.noOfVoyagesPlanned = noOfVoyagesPlanned;
+    }
+
+    public int getNoOfVoyagesCompleted() {
+        return noOfVoyagesCompleted;
+    }
+
+    public void setNoOfVoyagesCompleted(int noOfVoyagesCompleted) {
+        this.noOfVoyagesCompleted = noOfVoyagesCompleted;
+    }
+
+    public String getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
+    }
+
+    public String getClassification() {
+        return classification;
+    }
+
+    public void setClassification(String classification) {
+        this.classification = classification;
+    }
+}
+
+public class Solution {
+    public static double findAvgVoyagesByPct(NavalVessel[] vessels, int percentage) {
+        int totalVoyages = 0;
+        int count = 0;
+        for (NavalVessel vessel : vessels) {
+            double pct = (vessel.getNoOfVoyagesCompleted() * 100.0) / vessel.getNoOfVoyagesPlanned();
+            if (pct >= percentage) {
+                totalVoyages += vessel.getNoOfVoyagesCompleted();
+                count++;
+            }
+        }
+        if (count == 0) {
+            return 0;
+        }
+        return (double) totalVoyages / count;
+    }
+
+    public static NavalVessel findVesselByGrade(NavalVessel[] vessels, String purpose) {
+        for (NavalVessel vessel : vessels) {
+            if (vessel.getPurpose().equalsIgnoreCase(purpose)) {
+                double pct = (vessel.getNoOfVoyagesCompleted() * 100.0) / vessel.getNoOfVoyagesPlanned();
+                if (pct == 100) {
+                    vessel.setClassification("Star");
+                } else if (pct >= 80) {
+                    vessel.setClassification("Leader");
+                } else if (pct >= 55) {
+                    vessel.setClassification("Inspirer");
+                } else {
+                    vessel.setClassification("Striver");
+                }
+                return vessel;
+            }
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        NavalVessel[] vessels = new NavalVessel[4];
+        for (int i = 0; i < 4; i++) {
+            int vesselId = Integer.parseInt(scanner.nextLine().trim());
+            String vesselName = scanner.nextLine().trim();
+            int noOfVoyagesPlanned = Integer.parseInt(scanner.nextLine().trim());
+            int noOfVoyagesCompleted = Integer.parseInt(scanner.nextLine().trim());
+            String purpose = scanner.nextLine().trim();
+            vessels[i] = new NavalVessel(vesselId, vesselName, noOfVoyagesPlanned, noOfVoyagesCompleted, purpose);
+        }
+        int percentage = Integer.parseInt(scanner.nextLine().trim());
+        String purpose = scanner.nextLine().trim();
+
+        double avgVoyages = findAvgVoyagesByPct(vessels, percentage);
+        if (avgVoyages > 0) {
+            System.out.println((int) avgVoyages);
+        } else {
+            System.out.println("0");
+        }
+
+        NavalVessel vessel = findVesselByGrade(vessels, purpose);
+        if (vessel != null) {
+            System.out.println(vessel.getVesselName() + "%" + vessel.getClassification());
+        } else {
+            System.out.println("No Naval Vessel is available with the specified purpose");
+        }
+    }
+}
