@@ -1,4 +1,4 @@
-//select statment in SQL using JAVA
+//JDBC select statment in SQL using JAVA
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.Connection;
