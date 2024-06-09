@@ -1,0 +1,126 @@
+import java.util.Scanner;
+
+class Institution {
+    private int institutionId;
+    private String institutionName;
+    private int noOfStudentsPlaced;
+    private int noOfStudentsCleared;
+    private String location;
+    private String grade;
+
+    public Institution(int institutionId, String institutionName, int noOfStudentsPlaced, int noOfStudentsCleared, String location) {
+        this.institutionId = institutionId;
+        this.institutionName = institutionName;
+        this.noOfStudentsPlaced = noOfStudentsPlaced;
+        this.noOfStudentsCleared = noOfStudentsCleared;
+        this.location = location;
+    }
+
+    public int getInstitutionId() {
+        return institutionId;
+    }
+
+    public void setInstitutionId(int institutionId) {
+        this.institutionId = institutionId;
+    }
+
+    public String getInstitutionName() {
+        return institutionName;
+    }
+
+    public void setInstitutionName(String institutionName) {
+        this.institutionName = institutionName;
+    }
+
+    public int getNoOfStudentsPlaced() {
+        return noOfStudentsPlaced;
+    }
+
+    public void setNoOfStudentsPlaced(int noOfStudentsPlaced) {
+        this.noOfStudentsPlaced = noOfStudentsPlaced;
+    }
+
+    public int getNoOfStudentsCleared() {
+        return noOfStudentsCleared;
+    }
+
+    public void setNoOfStudentsCleared(int noOfStudentsCleared) {
+        this.noOfStudentsCleared = noOfStudentsCleared;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Institution[] institutions = new Institution[4];
+        
+        for (int i = 0; i < 4; i++) {
+            int institutionId = Integer.parseInt(scanner.nextLine().trim());
+            String institutionName = scanner.nextLine().trim();
+            int noOfStudentsPlaced = Integer.parseInt(scanner.nextLine().trim());
+            int noOfStudentsCleared = Integer.parseInt(scanner.nextLine().trim());
+            String location = scanner.nextLine().trim();
+            institutions[i] = new Institution(institutionId, institutionName, noOfStudentsPlaced, noOfStudentsCleared, location);
+        }
+        
+        String location = scanner.nextLine().trim();
+        String institutionName = scanner.nextLine().trim();
+
+        int clearedStudents = findNumClearancedByLoc(institutions, location);
+        if (clearedStudents > 0) {
+            System.out.println(clearedStudents);
+        } else {
+            System.out.println("There are no cleared students in this particular location");
+        }
+
+        Institution institution = updateInstitutionGrade(institutions, institutionName);
+        if (institution != null) {
+            System.out.println(institution.getInstitutionName() + "::" + institution.getGrade());
+        } else {
+            System.out.println("No Institute is available with the specified name");
+        }
+        
+        scanner.close();
+    }
+
+    public static int findNumClearancedByLoc(Institution[] instArray, String location) {
+        int totalCleared = 0;
+        for (Institution inst : instArray) {
+            if (inst.getLocation().equalsIgnoreCase(location)) {
+                totalCleared += inst.getNoOfStudentsCleared();
+            }
+        }
+        return totalCleared;
+    }
+
+    public static Institution updateInstitutionGrade(Institution[] instArray, String instName) {
+        for (Institution inst : instArray) {
+            if (inst.getInstitutionName().equalsIgnoreCase(instName)) {
+                int rating = (inst.getNoOfStudentsPlaced() * 100) / inst.getNoOfStudentsCleared();
+                if (rating >= 80) {
+                    inst.setGrade("A");
+                } else {
+                    inst.setGrade("B");
+                }
+                return inst;
+            }
+        }
+        return null;
+    }
+}
